@@ -6,6 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.FabPosition
+import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
@@ -13,6 +15,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Favorite
@@ -63,8 +66,11 @@ fun ScaffoldExample() {
                 }
             }
         }, scaffoldState = scaffoldState,
-        bottomBar = { MyBottomNavigation()}
-    ) {
+        bottomBar = { MyBottomNavigation() },
+        floatingActionButton = { myFAB() },
+        floatingActionButtonPosition = FabPosition.Center,
+        isFloatingActionButtonDocked = true
+    ){
 
     }
 }
@@ -97,17 +103,26 @@ fun MyBottomNavigation() {
         mutableStateOf(0)
     }
     BottomNavigation(backgroundColor = Color.Red, contentColor = Color.White) {
-        BottomNavigationItem(selected = index== 0, onClick = { index=0 }, icon = {
+        BottomNavigationItem(selected = index == 0, onClick = { index = 0 }, icon = {
             Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Fav")
         }, label = { Text(text = "Fav") })
 
-        BottomNavigationItem(selected = index==1, onClick = {index = 1 }, icon = {
+        BottomNavigationItem(selected = index == 1, onClick = { index = 1 }, icon = {
             Icon(imageVector = Icons.Filled.Home, contentDescription = "Home")
         }, label = { Text(text = "Home") })
 
-        BottomNavigationItem(selected = index==2, onClick = {index=2 }, icon = {
+        BottomNavigationItem(selected = index == 2, onClick = { index = 2 }, icon = {
             Icon(imageVector = Icons.Filled.Person, contentDescription = "Person")
         }, label = { Text(text = "Person") })
+    }
+}
+
+
+@Composable
+fun myFAB() {
+    FloatingActionButton(onClick = {}, backgroundColor = Color.Yellow, contentColor = Color.Black) {
+        Icon(imageVector = Icons.Filled.Add, contentDescription = "FAB")
+
     }
 }
 
