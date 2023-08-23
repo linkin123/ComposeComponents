@@ -20,7 +20,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
@@ -36,7 +35,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.JetpackComposeComponentsTheme
 import kotlinx.coroutines.launch
@@ -85,10 +83,12 @@ fun ScaffoldExample() {
         floatingActionButton = { myFAB() },
         floatingActionButtonPosition = FabPosition.End,
         isFloatingActionButtonDocked = false,
-        drawerContent = { MyDrawer{
-            coroutineScope.launch {  scaffoldState.drawerState.close() }
+        drawerContent = {
+            MyDrawer {
+                coroutineScope.launch { scaffoldState.drawerState.close() }
 
-        } },
+            }
+        },
         drawerGesturesEnabled = false
     ) {
 
@@ -147,27 +147,31 @@ fun myFAB() {
 }
 
 @Composable
-fun MyDrawer(onCloseDrawer:()-> Unit) {
+fun MyDrawer(onCloseDrawer: () -> Unit) {
     Column(Modifier.padding(8.dp)) {
         Text(
             text = "primera opcion", modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp).clickable { onCloseDrawer.invoke() }
+                .padding(vertical = 8.dp)
+                .clickable { onCloseDrawer.invoke() }
         )
         Text(
             text = "segunda opcion", modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp).clickable { onCloseDrawer.invoke() }
+                .padding(vertical = 8.dp)
+                .clickable { onCloseDrawer.invoke() }
         )
         Text(
             text = "tercera opcion", modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp).clickable { onCloseDrawer.invoke() }
+                .padding(vertical = 8.dp)
+                .clickable { onCloseDrawer.invoke() }
         )
         Text(
             text = "cuarta opcion", modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp).clickable { onCloseDrawer.invoke() }
+                .padding(vertical = 8.dp)
+                .clickable { onCloseDrawer.invoke() }
         )
     }
 }
