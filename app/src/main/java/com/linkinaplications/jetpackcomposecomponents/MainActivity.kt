@@ -28,8 +28,13 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.JetpackComposeComponentsTheme
+import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen1
+import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen2
+import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen3
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -41,7 +46,19 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    ScaffoldExample()
+                    //ScaffoldExample()
+                    val navigationController = rememberNavController()
+                    NavHost(navController = navigationController, startDestination = "pantalla1"){
+                        composable("pantalla1"){
+                            Screen1(navigationController)
+                        }
+                        composable("pantalla2"){
+                            Screen2(navigationController)
+                        }
+                        composable("pantalla3"){
+                            Screen3(navigationController)
+                        }
+                    }
                 }
             }
         }
