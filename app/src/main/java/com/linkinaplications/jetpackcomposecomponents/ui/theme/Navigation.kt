@@ -16,7 +16,7 @@ fun Screen1(navController: NavHostController) {
     Box(modifier = Modifier
         .fillMaxSize()
         .background(Color.Cyan)) {
-        Text(text = "pantalla 1", modifier = Modifier.align(Alignment.Center).clickable { navController.navigate("pantalla2") })
+        Text(text = "pantalla 1", modifier = Modifier.align(Alignment.Center).clickable { navController.navigate(Routes.Pantalla2.route) })
     }
 }
 
@@ -25,7 +25,7 @@ fun Screen2(navController: NavHostController) {
     Box(modifier = Modifier
         .fillMaxSize()
         .background(Color.Red)) {
-        Text(text = "pantalla 2", modifier = Modifier.align(Alignment.Center).clickable { navController.navigate("pantalla3") })
+        Text(text = "pantalla 2", modifier = Modifier.align(Alignment.Center).clickable { navController.navigate(Routes.Pantalla3.route) })
     }
 }
 

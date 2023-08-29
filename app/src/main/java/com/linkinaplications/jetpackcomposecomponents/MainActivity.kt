@@ -32,6 +32,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.JetpackComposeComponentsTheme
+import com.linkinaplications.jetpackcomposecomponents.ui.theme.Routes
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen1
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen2
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen3
@@ -48,14 +49,14 @@ class MainActivity : ComponentActivity() {
                 ) {
                     //ScaffoldExample()
                     val navigationController = rememberNavController()
-                    NavHost(navController = navigationController, startDestination = "pantalla1"){
-                        composable("pantalla1"){
+                    NavHost(navController = navigationController, startDestination = Routes.Pantalla1.route){
+                        composable(Routes.Pantalla1.route){
                             Screen1(navigationController)
                         }
-                        composable("pantalla2"){
+                        composable(Routes.Pantalla2.route){
                             Screen2(navigationController)
                         }
-                        composable("pantalla3"){
+                        composable(Routes.Pantalla3.route){
                             Screen3(navigationController)
                         }
                     }
