@@ -28,14 +28,17 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.JetpackComposeComponentsTheme
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.Routes
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen1
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen2
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen3
+import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen4
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -49,15 +52,26 @@ class MainActivity : ComponentActivity() {
                 ) {
                     //ScaffoldExample()
                     val navigationController = rememberNavController()
-                    NavHost(navController = navigationController, startDestination = Routes.Pantalla1.route){
-                        composable(Routes.Pantalla1.route){
+                    NavHost(
+                        navController = navigationController,
+                        startDestination = Routes.Pantalla1.route
+                    ) {
+                        composable(Routes.Pantalla1.route) {
                             Screen1(navigationController)
                         }
-                        composable(Routes.Pantalla2.route){
+                        composable(Routes.Pantalla2.route) {
                             Screen2(navigationController)
                         }
-                        composable(Routes.Pantalla3.route){
+                        composable(Routes.Pantalla3.route) {
                             Screen3(navigationController)
+                        }
+                        composable(
+                            Routes.Pantalla4.route,
+                            arguments = listOf(navArgument("age") { type = NavType.IntType })
+                        ) { backStackEntry ->
+                            Screen4(
+                                navigationController, backStackEntry.arguments?.getInt("age") ?: 0
+                            )
                         }
                     }
                 }
@@ -81,7 +95,7 @@ fun ScaffoldExample() {
                 }
             }
         }, scaffoldState = scaffoldState,
-        bottomBar = { MyBottomNavigation()}
+        bottomBar = { MyBottomNavigation() }
     ) {
 
     }
@@ -115,15 +129,15 @@ fun MyBottomNavigation() {
         mutableStateOf(0)
     }
     BottomNavigation(backgroundColor = Color.Red, contentColor = Color.White) {
-        BottomNavigationItem(selected = index== 0, onClick = { index=0 }, icon = {
+        BottomNavigationItem(selected = index == 0, onClick = { index = 0 }, icon = {
             Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Fav")
         }, label = { Text(text = "Fav") })
 
-        BottomNavigationItem(selected = index==1, onClick = {index = 1 }, icon = {
+        BottomNavigationItem(selected = index == 1, onClick = { index = 1 }, icon = {
             Icon(imageVector = Icons.Filled.Home, contentDescription = "Home")
         }, label = { Text(text = "Home") })
 
-        BottomNavigationItem(selected = index==2, onClick = {index=2 }, icon = {
+        BottomNavigationItem(selected = index == 2, onClick = { index = 2 }, icon = {
             Icon(imageVector = Icons.Filled.Person, contentDescription = "Person")
         }, label = { Text(text = "Person") })
     }

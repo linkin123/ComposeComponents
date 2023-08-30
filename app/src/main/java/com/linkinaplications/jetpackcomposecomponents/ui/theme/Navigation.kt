@@ -13,27 +13,56 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun Screen1(navController: NavHostController) {
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color.Cyan)) {
-        Text(text = "pantalla 1", modifier = Modifier.align(Alignment.Center).clickable { navController.navigate(Routes.Pantalla2.route) })
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Cyan)
+    ) {
+        Text(
+            text = "pantalla 1",
+            modifier = Modifier
+                .align(Alignment.Center)
+                .clickable { navController.navigate(Routes.Pantalla2.route) })
     }
 }
 
 @Composable
 fun Screen2(navController: NavHostController) {
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color.Red)) {
-        Text(text = "pantalla 2", modifier = Modifier.align(Alignment.Center).clickable { navController.navigate(Routes.Pantalla3.route) })
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Red)
+    ) {
+        Text(
+            text = "pantalla 2",
+            modifier = Modifier
+                .align(Alignment.Center)
+                .clickable { navController.navigate(Routes.Pantalla3.route) })
     }
 }
 
 @Composable
 fun Screen3(navController: NavHostController) {
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color.Green)) {
-        Text(text = "pantalla 3", modifier = Modifier.align(Alignment.Center))
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Green)
+    ) {
+        Text(
+            text = "pantalla 3",
+            modifier = Modifier
+                .align(Alignment.Center)
+                .clickable { navController.navigate(Routes.Pantalla4.createRoute(31)) })
+    }
+}
+
+@Composable
+fun Screen4(navController: NavHostController, age: Int) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Yellow)
+    ) {
+        Text(text = "tengo $age años", modifier = Modifier.align(Alignment.Center))
     }
 }
