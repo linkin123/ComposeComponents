@@ -39,6 +39,7 @@ import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen1
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen2
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen3
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen4
+import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen5
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -71,6 +72,15 @@ class MainActivity : ComponentActivity() {
                         ) { backStackEntry ->
                             Screen4(
                                 navigationController, backStackEntry.arguments?.getInt("age") ?: 0
+                            )
+                        }
+                        composable(
+                            Routes.Pantalla5.route,
+                            arguments = listOf(navArgument("name", { defaultValue = "pepe" }))
+                        ) { backStackEntry ->
+                            Screen5(
+                                navigationController,
+                                backStackEntry.arguments?.getString("name")
                             )
                         }
                     }
