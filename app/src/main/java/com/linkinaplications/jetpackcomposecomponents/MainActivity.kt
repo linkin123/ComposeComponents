@@ -42,6 +42,7 @@ import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen2
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen3
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen4
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen5
+import com.linkinaplications.jetpackcomposecomponents.ui.theme.SizeAnimation
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -55,8 +56,8 @@ class MainActivity : ComponentActivity() {
                 ) {
                     //ScaffoldExample()
                     //navigation()
-                    ColorAnimationSimple()
-
+                    //ColorAnimationSimple()
+                    SizeAnimation()
                 }
             }
         }

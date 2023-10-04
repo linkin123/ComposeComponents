@@ -1,6 +1,7 @@
 package com.linkinaplications.jetpackcomposecomponents.ui.theme
 
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -47,17 +48,34 @@ fun ColorAnimationSimple() {
         val realColor2 by animateColorAsState(
             targetValue = if (secondColor) Color.Red else Color.Yellow,
             animationSpec = tween(2000),
-            finishedListener = {showBox= false},
+            finishedListener = { showBox = false },
             label = "realColor"
         )
 
-        if(showBox){
+        if (showBox) {
             Box(modifier = Modifier
                 .size(100.dp)
                 .background(realColor2)
                 .clickable { secondColor = !secondColor })
         }
     }
+}
 
+@Composable
+fun SizeAnimation() {
+    var smallSize by rememberSaveable {
+        mutableStateOf(true)
+    }
 
+    val size by animateDpAsState(
+        targetValue = if (smallSize) 50.dp else 100.dp,
+        animationSpec = tween(500),
+        label = "animation size",
+        finishedListener = {if (!smallSize){ } }
+    )
+
+    Box(modifier = Modifier
+        .size(size)
+        .background(Color.Cyan)
+        .clickable { smallSize = !smallSize })
 }
