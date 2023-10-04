@@ -8,6 +8,7 @@ import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -33,6 +34,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.linkinaplications.jetpackcomposecomponents.ui.theme.ColorAnimationSimple
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.JetpackComposeComponentsTheme
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.Routes
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen1
@@ -49,43 +51,49 @@ class MainActivity : ComponentActivity() {
             JetpackComposeComponentsTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize()
+                    color = MaterialTheme.colors.background
                 ) {
                     //ScaffoldExample()
-                    val navigationController = rememberNavController()
-                    NavHost(
-                        navController = navigationController,
-                        startDestination = Routes.Pantalla1.route
-                    ) {
-                        composable(Routes.Pantalla1.route) {
-                            Screen1(navigationController)
-                        }
-                        composable(Routes.Pantalla2.route) {
-                            Screen2(navigationController)
-                        }
-                        composable(Routes.Pantalla3.route) {
-                            Screen3(navigationController)
-                        }
-                        composable(
-                            Routes.Pantalla4.route,
-                            arguments = listOf(navArgument("age") { type = NavType.IntType })
-                        ) { backStackEntry ->
-                            Screen4(
-                                navigationController, backStackEntry.arguments?.getInt("age") ?: 0
-                            )
-                        }
-                        composable(
-                            Routes.Pantalla5.route,
-                            arguments = listOf(navArgument("name", { defaultValue = "pepe" }))
-                        ) { backStackEntry ->
-                            Screen5(
-                                navigationController,
-                                backStackEntry.arguments?.getString("name")
-                            )
-                        }
-                    }
+                    //navigation()
+                    ColorAnimationSimple()
+
                 }
             }
+        }
+    }
+}
+
+@Composable fun navigation(){
+    val navigationController = rememberNavController()
+    NavHost(
+        navController = navigationController,
+        startDestination = Routes.Pantalla1.route
+    ) {
+        composable(Routes.Pantalla1.route) {
+            Screen1(navigationController)
+        }
+        composable(Routes.Pantalla2.route) {
+            Screen2(navigationController)
+        }
+        composable(Routes.Pantalla3.route) {
+            Screen3(navigationController)
+        }
+        composable(
+            Routes.Pantalla4.route,
+            arguments = listOf(navArgument("age") { type = NavType.IntType })
+        ) { backStackEntry ->
+            Screen4(
+                navigationController, backStackEntry.arguments?.getInt("age") ?: 0
+            )
+        }
+        composable(
+            Routes.Pantalla5.route,
+            arguments = listOf(navArgument("name", { defaultValue = "pepe" }))
+        ) { backStackEntry ->
+            Screen5(
+                navigationController,
+                backStackEntry.arguments?.getString("name")
+            )
         }
     }
 }
