@@ -1,6 +1,7 @@
 package com.linkinaplications.jetpackcomposecomponents.ui.theme
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.Crossfade
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateDpAsState
@@ -18,7 +19,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -29,6 +33,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.linkinaplications.jetpackcomposecomponents.ui.theme.ComponentType.*
+import kotlin.random.Random.Default.nextInt
+
 
 
 @Composable
@@ -135,8 +142,8 @@ fun VisibilityEnterAnimation() {
 
         AnimatedVisibility(
             isVisible,
-            enter = fadeIn() ,
-            exit = fadeOut() ,
+            enter = fadeIn(),
+            exit = fadeOut(),
             label = ""
         ) {
             Box(
@@ -151,5 +158,44 @@ fun VisibilityEnterAnimation() {
             )
         }
     }
+}
+
+@Composable
+fun CrossFadeExampleAnimation() {
+    var myComponentType : ComponentType by remember {
+        mutableStateOf(Text)
+    }
+
+    Column(Modifier.fillMaxSize()) {
+        Button(onClick = { myComponentType = getComponentRandom() }) {
+            Text(text = "Cambiar componente")
+        }
+
+        Crossfade(targetState = myComponentType, label = "") { myComponentType ->
+            when (myComponentType) {
+                Image -> Icon(Icons.Default.Send, contentDescription = "")
+                Text -> Text(text = "soy un componente")
+                Box -> Box(
+                    Modifier
+                        .size(150.dp)
+                        .background(Color.Red)
+                )
+                Error -> Text(text= "ERORR")
+            }
+        }
+    }
+}
+
+fun getComponentRandom(): ComponentType {
+    return when (nextInt(from = 0, until = 3)) {
+        0 -> Image
+        1 -> Text
+        2 -> Box
+        else -> Error
+    }
+}
+
+enum class ComponentType {
+    Image, Text, Box, Error
 }
 

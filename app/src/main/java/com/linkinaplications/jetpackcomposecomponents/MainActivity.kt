@@ -3,7 +3,6 @@ package com.linkinaplications.jetpackcomposecomponents
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
@@ -27,14 +26,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.linkinaplications.jetpackcomposecomponents.ui.theme.ColorAnimationSimple
+import com.linkinaplications.jetpackcomposecomponents.ui.theme.CrossFadeExampleAnimation
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.JetpackComposeComponentsTheme
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.Routes
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen1
@@ -42,8 +40,6 @@ import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen2
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen3
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen4
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.Screen5
-import com.linkinaplications.jetpackcomposecomponents.ui.theme.SizeAnimation
-import com.linkinaplications.jetpackcomposecomponents.ui.theme.VisibilityAnimation
 import com.linkinaplications.jetpackcomposecomponents.ui.theme.VisibilityEnterAnimation
 import kotlinx.coroutines.launch
 
@@ -61,14 +57,16 @@ class MainActivity : ComponentActivity() {
                     //ColorAnimationSimple()
                     //SizeAnimation()
                     //VisibilityAnimation()
-                    VisibilityEnterAnimation()
+                    //VisibilityEnterAnimation()
+                    CrossFadeExampleAnimation()
                 }
             }
         }
     }
 }
 
-@Composable fun navigation(){
+@Composable
+fun navigation() {
     val navigationController = rememberNavController()
     NavHost(
         navController = navigationController,
